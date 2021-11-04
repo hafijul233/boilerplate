@@ -1,0 +1,3 @@
+[submodule "modules/Core"]
+	path = modules/Core
+	url = https://github.com/hafijul233/core-module.git
