@@ -31,7 +31,7 @@ return [
     | users are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
-    | Supported: "session"
+    | Supported: "session", "token"
     |
     */
 
@@ -40,11 +40,17 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | User Providers
+    | Preference Providers
     |--------------------------------------------------------------------------
     |
     | All authentication drivers have a user provider. This defines how the
@@ -62,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => \Modules\Backend\Models\Authentication\User::class,
         ],
 
         // 'users' => [
@@ -107,5 +113,44 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Allow Self-Register Route
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define if you want to allow anyone to self-register.
+    | By default, the permission is set to true.
+    |
+    */
+
+    'allow_register' => true,
+
+    /*
+     * --------------------------------------------------------------------
+     * Allow Persistent Login Cookies (Remember me)
+     * --------------------------------------------------------------------
+     *
+     * While every attempt has been made to create a very strong protection
+     * with to remember me system, there are some cases (like when you
+     * need extreme protection, like dealing with users financials) that
+     * you might not want the extra risk associated with this cookie-based
+     * solution.
+     *
+     * @var bool
+     */
+    'allow_remembering' => false,
+
+    /*
+     * --------------------------------------------------------------------
+     * Minimum Password Length
+     * --------------------------------------------------------------------
+     *
+     * The minimum length that a password must be to be accepted.
+     * Recommended minimum value by NIST = 8 characters.
+     *
+     * @var int
+     */
+    'minimum_password_length' => 6,
 
 ];
