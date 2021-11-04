@@ -19,6 +19,7 @@
         "diglactic/laravel-breadcrumbs": "^7.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "joshbrw/laravel-module-installer": "^2.0",
         "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",

@@ -208,10 +208,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'hafijul233',
         'author' => [
-            'name' => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name' => 'Hafijul Islam',
+            'email' => 'hafijul233@gmail.com',
         ],
     ],
 
