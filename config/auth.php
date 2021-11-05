@@ -166,4 +166,17 @@ return [
      */
     'admin_auth_prefix' => '/',
 
+    /*
+     * --------------------------------------------------------------------
+     * Self Password Reset
+     * --------------------------------------------------------------------
+     *
+     * Allow user to reset his/her own password
+     * If he/she has forgotten
+     *
+     * @var bool
+     */
+    'allow_password_reset' => true,
+
+
 ];
