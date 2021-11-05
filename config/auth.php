@@ -186,6 +186,18 @@ return [
      * Authentication medium used to authentication
      * @var string
      */
-    'credential_field' => \Modules\Core\Supports\Constant::LOGIN_USERNAME,
+    'credential_field' => \Modules\Core\Supports\Constant::LOGIN_EMAIL,
+
+    /*
+     * --------------------------------------------------------------------
+     * OTP Medium
+     * --------------------------------------------------------------------
+     *
+     * OTP Confirmation Medium
+     * @value \Modules\Core\Supports\Constant::OTP_EMAIL
+     * @value \Modules\Core\Supports\Constant::OTP_MOBILE
+     * @var string
+     */
+    'credential_otp_field' => \Modules\Core\Supports\Constant::OTP_EMAIL,
 
 ];
