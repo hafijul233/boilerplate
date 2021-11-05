@@ -178,5 +178,14 @@ return [
      */
     'allow_password_reset' => true,
 
+    /*
+     * --------------------------------------------------------------------
+     * Authentication Medium
+     * --------------------------------------------------------------------
+     *
+     * Authentication medium used to authentication
+     * @var string
+     */
+    'credential_field' => \Modules\Core\Supports\Constant::LOGIN_USERNAME,
 
 ];
