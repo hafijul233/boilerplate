@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Core\Supports\Constant;
+
 return [
 
     /*
@@ -112,7 +114,7 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
+    'password_timeout' => 1 * Constant::WEEK,
 
     /*
     |--------------------------------------------------------------------------
@@ -186,7 +188,7 @@ return [
      * Authentication medium used to authentication
      * @var string
      */
-    'credential_field' => \Modules\Core\Supports\Constant::LOGIN_EMAIL,
+    'credential_field' => Constant::LOGIN_EMAIL,
 
     /*
      * --------------------------------------------------------------------
@@ -198,6 +200,6 @@ return [
      * @value \Modules\Core\Supports\Constant::OTP_MOBILE
      * @var string
      */
-    'credential_otp_field' => \Modules\Core\Supports\Constant::OTP_EMAIL,
+    'credential_otp_field' => Constant::OTP_EMAIL,
 
 ];

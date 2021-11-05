@@ -1,5 +1,48 @@
 <?php
 
+use Nwidart\Modules\Activators\FileActivator;
+use Nwidart\Modules\Commands\CommandMakeCommand;
+use Nwidart\Modules\Commands\ControllerMakeCommand;
+use Nwidart\Modules\Commands\DisableCommand;
+use Nwidart\Modules\Commands\DumpCommand;
+use Nwidart\Modules\Commands\EnableCommand;
+use Nwidart\Modules\Commands\EventMakeCommand;
+use Nwidart\Modules\Commands\FactoryMakeCommand;
+use Nwidart\Modules\Commands\InstallCommand;
+use Nwidart\Modules\Commands\JobMakeCommand;
+use Nwidart\Modules\Commands\LaravelModulesV6Migrator;
+use Nwidart\Modules\Commands\ListCommand;
+use Nwidart\Modules\Commands\ListenerMakeCommand;
+use Nwidart\Modules\Commands\MailMakeCommand;
+use Nwidart\Modules\Commands\MiddlewareMakeCommand;
+use Nwidart\Modules\Commands\MigrateCommand;
+use Nwidart\Modules\Commands\MigrateRefreshCommand;
+use Nwidart\Modules\Commands\MigrateResetCommand;
+use Nwidart\Modules\Commands\MigrateRollbackCommand;
+use Nwidart\Modules\Commands\MigrateStatusCommand;
+use Nwidart\Modules\Commands\MigrationMakeCommand;
+use Nwidart\Modules\Commands\ModelMakeCommand;
+use Nwidart\Modules\Commands\ModuleDeleteCommand;
+use Nwidart\Modules\Commands\ModuleMakeCommand;
+use Nwidart\Modules\Commands\NotificationMakeCommand;
+use Nwidart\Modules\Commands\PolicyMakeCommand;
+use Nwidart\Modules\Commands\ProviderMakeCommand;
+use Nwidart\Modules\Commands\PublishCommand;
+use Nwidart\Modules\Commands\PublishConfigurationCommand;
+use Nwidart\Modules\Commands\PublishMigrationCommand;
+use Nwidart\Modules\Commands\PublishTranslationCommand;
+use Nwidart\Modules\Commands\RequestMakeCommand;
+use Nwidart\Modules\Commands\ResourceMakeCommand;
+use Nwidart\Modules\Commands\RouteProviderMakeCommand;
+use Nwidart\Modules\Commands\RuleMakeCommand;
+use Nwidart\Modules\Commands\SeedCommand;
+use Nwidart\Modules\Commands\SeedMakeCommand;
+use Nwidart\Modules\Commands\SetupCommand;
+use Nwidart\Modules\Commands\TestMakeCommand;
+use Nwidart\Modules\Commands\UnUseCommand;
+use Nwidart\Modules\Commands\UpdateCommand;
+use Nwidart\Modules\Commands\UseCommand;
+
 return [
 
     /*
@@ -139,47 +182,47 @@ return [
     |
     */
     'commands' => [
-        \Nwidart\Modules\Commands\CommandMakeCommand::class,
-        \Nwidart\Modules\Commands\ControllerMakeCommand::class,
-        \Nwidart\Modules\Commands\DisableCommand::class,
-        \Nwidart\Modules\Commands\DumpCommand::class,
-        \Nwidart\Modules\Commands\EnableCommand::class,
-        \Nwidart\Modules\Commands\EventMakeCommand::class,
-        \Nwidart\Modules\Commands\JobMakeCommand::class,
-        \Nwidart\Modules\Commands\ListenerMakeCommand::class,
-        \Nwidart\Modules\Commands\MailMakeCommand::class,
-        \Nwidart\Modules\Commands\MiddlewareMakeCommand::class,
-        \Nwidart\Modules\Commands\NotificationMakeCommand::class,
-        \Nwidart\Modules\Commands\ProviderMakeCommand::class,
-        \Nwidart\Modules\Commands\RouteProviderMakeCommand::class,
-        \Nwidart\Modules\Commands\InstallCommand::class,
-        \Nwidart\Modules\Commands\ListCommand::class,
-        \Nwidart\Modules\Commands\ModuleDeleteCommand::class,
-        \Nwidart\Modules\Commands\ModuleMakeCommand::class,
-        \Nwidart\Modules\Commands\FactoryMakeCommand::class,
-        \Nwidart\Modules\Commands\PolicyMakeCommand::class,
-        \Nwidart\Modules\Commands\RequestMakeCommand::class,
-        \Nwidart\Modules\Commands\RuleMakeCommand::class,
-        \Nwidart\Modules\Commands\MigrateCommand::class,
-        \Nwidart\Modules\Commands\MigrateRefreshCommand::class,
-        \Nwidart\Modules\Commands\MigrateResetCommand::class,
-        \Nwidart\Modules\Commands\MigrateRollbackCommand::class,
-        \Nwidart\Modules\Commands\MigrateStatusCommand::class,
-        \Nwidart\Modules\Commands\MigrationMakeCommand::class,
-        \Nwidart\Modules\Commands\ModelMakeCommand::class,
-        \Nwidart\Modules\Commands\PublishCommand::class,
-        \Nwidart\Modules\Commands\PublishConfigurationCommand::class,
-        \Nwidart\Modules\Commands\PublishMigrationCommand::class,
-        \Nwidart\Modules\Commands\PublishTranslationCommand::class,
-        \Nwidart\Modules\Commands\SeedCommand::class,
-        \Nwidart\Modules\Commands\SeedMakeCommand::class,
-        \Nwidart\Modules\Commands\SetupCommand::class,
-        \Nwidart\Modules\Commands\UnUseCommand::class,
-        \Nwidart\Modules\Commands\UpdateCommand::class,
-        \Nwidart\Modules\Commands\UseCommand::class,
-        \Nwidart\Modules\Commands\ResourceMakeCommand::class,
-        \Nwidart\Modules\Commands\TestMakeCommand::class,
-        \Nwidart\Modules\Commands\LaravelModulesV6Migrator::class,
+        CommandMakeCommand::class,
+        ControllerMakeCommand::class,
+        DisableCommand::class,
+        DumpCommand::class,
+        EnableCommand::class,
+        EventMakeCommand::class,
+        JobMakeCommand::class,
+        ListenerMakeCommand::class,
+        MailMakeCommand::class,
+        MiddlewareMakeCommand::class,
+        NotificationMakeCommand::class,
+        ProviderMakeCommand::class,
+        RouteProviderMakeCommand::class,
+        InstallCommand::class,
+        ListCommand::class,
+        ModuleDeleteCommand::class,
+        ModuleMakeCommand::class,
+        FactoryMakeCommand::class,
+        PolicyMakeCommand::class,
+        RequestMakeCommand::class,
+        RuleMakeCommand::class,
+        MigrateCommand::class,
+        MigrateRefreshCommand::class,
+        MigrateResetCommand::class,
+        MigrateRollbackCommand::class,
+        MigrateStatusCommand::class,
+        MigrationMakeCommand::class,
+        ModelMakeCommand::class,
+        PublishCommand::class,
+        PublishConfigurationCommand::class,
+        PublishMigrationCommand::class,
+        PublishTranslationCommand::class,
+        SeedCommand::class,
+        SeedMakeCommand::class,
+        SetupCommand::class,
+        UnUseCommand::class,
+        UpdateCommand::class,
+        UseCommand::class,
+        ResourceMakeCommand::class,
+        TestMakeCommand::class,
+        LaravelModulesV6Migrator::class,
     ],
 
     /*
@@ -260,7 +303,7 @@ return [
     */
     'activators' => [
         'file' => [
-            'class' => \Nwidart\Modules\Activators\FileActivator::class,
+            'class' => FileActivator::class,
             'statuses-file' => base_path('modules_statuses.json'),
             'cache-key' => 'activator.installed',
             'cache-lifetime' => 604800,
