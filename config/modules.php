@@ -1,5 +1,6 @@
 <?php
 
+use Modules\Core\Supports\Constant;
 use Nwidart\Modules\Activators\FileActivator;
 use Nwidart\Modules\Commands\CommandMakeCommand;
 use Nwidart\Modules\Commands\ControllerMakeCommand;
@@ -145,7 +146,7 @@ return [
             'command' => ['path' => 'Console', 'generate' => true],
             'migration' => ['path' => 'Database/Migrations', 'generate' => true],
             'seeder' => ['path' => 'Database/Seeders', 'generate' => true],
-            'factory' => ['path' => 'Database/factories', 'generate' => true],
+            'factory' => ['path' => 'Database/Factories', 'generate' => true],
             'model' => ['path' => 'Models', 'generate' => true],
             'routes' => ['path' => 'Routes', 'generate' => true],
             'controller' => ['path' => 'Http/Controllers', 'generate' => true],
@@ -236,7 +237,7 @@ return [
     */
 
     'scan' => [
-        'enabled' => false,
+        'enabled' => true,
         'paths' => [
             base_path('vendor/*/*'),
         ],
@@ -271,7 +272,7 @@ return [
     'cache' => [
         'enabled' => false,
         'key' => 'laravel-modules',
-        'lifetime' => 60,
+        'lifetime' => 1 * Constant::MINUTE,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -306,7 +307,7 @@ return [
             'class' => FileActivator::class,
             'statuses-file' => base_path('modules_statuses.json'),
             'cache-key' => 'activator.installed',
-            'cache-lifetime' => 604800,
+            'cache-lifetime' => 1 * Constant::WEEK,
         ],
     ],
 
