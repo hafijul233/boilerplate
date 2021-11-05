@@ -5,6 +5,28 @@ use Modules\Core\Supports\Constant;
 return [
 
     /*
+     * --------------------------------------------------------------------
+     * Authentication Medium
+     * --------------------------------------------------------------------
+     *
+     * Authentication medium used to authentication
+     * @var string
+     */
+    'credential_field' => Constant::LOGIN_EMAIL,
+
+    /*
+     * --------------------------------------------------------------------
+     * OTP Medium
+     * --------------------------------------------------------------------
+     *
+     * OTP Confirmation Medium
+     * @value \Modules\Core\Supports\Constant::OTP_EMAIL
+     * @value \Modules\Core\Supports\Constant::OTP_MOBILE
+     * @var string
+     */
+    'credential_otp_field' => Constant::OTP_EMAIL,
+
+    /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
     |--------------------------------------------------------------------------
@@ -179,27 +201,5 @@ return [
      * @var bool
      */
     'allow_password_reset' => true,
-
-    /*
-     * --------------------------------------------------------------------
-     * Authentication Medium
-     * --------------------------------------------------------------------
-     *
-     * Authentication medium used to authentication
-     * @var string
-     */
-    'credential_field' => Constant::LOGIN_EMAIL,
-
-    /*
-     * --------------------------------------------------------------------
-     * OTP Medium
-     * --------------------------------------------------------------------
-     *
-     * OTP Confirmation Medium
-     * @value \Modules\Core\Supports\Constant::OTP_EMAIL
-     * @value \Modules\Core\Supports\Constant::OTP_MOBILE
-     * @var string
-     */
-    'credential_otp_field' => Constant::OTP_EMAIL,
 
 ];
