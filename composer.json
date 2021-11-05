@@ -27,7 +27,7 @@
         "laravelcollective/html": "^6.2",
         "nwidart/laravel-modules": "^8.2",
         "owen-it/laravel-auditing": "^12.0",
-        "spatie/laravel-medialibrary": "9.0.0",
+        "spatie/laravel-medialibrary": "^9.8",
         "spatie/laravel-permission": "^5.3",
         "yoeunes/notify": "^1.0"
     },

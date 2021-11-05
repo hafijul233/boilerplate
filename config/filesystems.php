@@ -35,12 +35,38 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'monitor' => [
+            'driver' => 'local',
+            'root' => storage_path('monitor'),
+            'url' => env('APP_URL').'/storage/monitor',
+            'visibility' => 'private',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'upload' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => env('APP_URL').'/upload',
+            'visibility' => 'public',
+        ],
+
+        'media' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url'    => env('APP_URL').'/media',
+        ],
+
+        'avatar' => [
+            'driver' => 'local',
+            'root'   => public_path('media/avatars'),
+            'url'    => env('APP_URL').'/media/avatars',
+        ],
+
 
         's3' => [
             'driver' => 's3',
