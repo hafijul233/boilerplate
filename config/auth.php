@@ -24,7 +24,7 @@ return [
      * @value \Modules\Core\Supports\Constant::OTP_MOBILE
      * @var string
      */
-    'credential_otp_field' => Constant::OTP_EMAIL,
+    'credential_otp_field' => Constant::OTP_MOBILE,
 
     /*
     |--------------------------------------------------------------------------

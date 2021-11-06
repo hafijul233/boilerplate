@@ -125,7 +125,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Autoloaded Service Providers
+    | Application Preloader
+    |--------------------------------------------------------------------------
+    |
+    | Preloader that will display when as webpage is very slow.
+    | Null if we don't want preloader default enabled
+    |
+    | @var string|null
+    */
+
+    'preloader' => 'modules/admin/assets/img/AdminLTELogo.png',
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Autoloader Service Providers
     |--------------------------------------------------------------------------
     |
     | The service providers listed here will be automatically loaded on the
