@@ -1,6 +1,6 @@
 <?php
 
-use Modules\Core\Supports\Constant;
+use Modules\Admin\Supports\Constant;
 
 return [
 
@@ -20,8 +20,8 @@ return [
      * --------------------------------------------------------------------
      *
      * OTP Confirmation Medium
-     * @value \Modules\Core\Supports\Constant::OTP_EMAIL
-     * @value \Modules\Core\Supports\Constant::OTP_MOBILE
+     * @value \Modules\Admin\Supports\Constant::OTP_EMAIL
+     * @value \Modules\Admin\Supports\Constant::OTP_MOBILE
      * @var string
      */
     'credential_otp_field' => Constant::OTP_MOBILE,
@@ -92,7 +92,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Modules\Core\Models\User::class,
+            'model' => \Modules\Admin\Models\User::class,
         ],
 
         // 'users' => [

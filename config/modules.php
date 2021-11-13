@@ -1,6 +1,6 @@
 <?php
 
-use Modules\Core\Supports\Constant;
+use Modules\Admin\Supports\Constant;
 use Nwidart\Modules\Activators\FileActivator;
 use Nwidart\Modules\Commands\CommandMakeCommand;
 use Nwidart\Modules\Commands\ControllerMakeCommand;
