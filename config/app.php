@@ -180,6 +180,8 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Rap2hpoutre\FastExcel\Providers\FastExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -247,6 +249,8 @@ return [
         //Third party Alias
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'FastExcel' => Rap2hpoutre\FastExcel\Facades\FastExcel::class,
     ],
 
 ];
