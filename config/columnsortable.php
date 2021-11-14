@@ -11,7 +11,7 @@ return [
             'class' => 'mdi mdi-sort-alphabetical',
         ],
         'numeric' => [
-            'rows' => ['amount', 'price'],
+            'rows' => ['amount', 'price', 'mobile'],
             'class' => 'mdi mdi-sort-numeric',
         ],
         'date' => [

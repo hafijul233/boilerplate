@@ -147,7 +147,7 @@ return [
     | @var string|null
     */
 
-    'datetime' => 'd/m/y h:i a',
+    'datetime' => 'd M Y h:i a',
 
 
     /*
