@@ -136,6 +136,19 @@ return [
 
     'preloader' => 'modules/admin/assets/img/AdminLTELogo.png',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application Default Date Format
+    |--------------------------------------------------------------------------
+    |
+    | Preloader that will display when as webpage is very slow.
+    | Null if we don't want preloader default enabled
+    |
+    | @var string|null
+    */
+
+    'datetime' => 'd/m/y h:i a',
+
 
     /*
     |--------------------------------------------------------------------------
