@@ -44,7 +44,7 @@ return [
     /*
      * By default all conversions will be performed on a queue.
      */
-    'queue_conversions_by_default' => env('QUEUE_CONVERSIONS_BY_DEFAULT', true),
+    'queue_conversions_by_default' => (bool)env('QUEUE_CONVERSIONS_BY_DEFAULT', true),
 
     /*
      * The fully qualified class name of the media model.
