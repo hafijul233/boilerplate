@@ -29,7 +29,7 @@ return [
     'ascii' => false,
 
     // Image shape: circle or square
-    'shape' => 'circle',
+    'shape' => 'square',
 
     // Image width, in pixel
     'width' => 256,
@@ -41,10 +41,10 @@ return [
     'chars' => 2,
 
     // font size
-    'fontSize' => 48,
+    'fontSize' => 96,
 
     // convert initial letter in uppercase
-    'uppercase' => false,
+    'uppercase' => true,
 
     // Right to Left (RTL)
     'rtl' => false,
