@@ -13,11 +13,11 @@ return [
         'class' => Toastr::class,
 
         'notify_js' => [
-            asset('/modules/admin/plugins/toastr/toastr.min.js'),
+            env('ASSET_URL', 'http://127.0.0.1:5000') . '/modules/admin/plugins/toastr/toastr.min.js',
         ],
 
         'notify_css' => [
-            asset('/modules/admin/plugins/toastr/toastr.min.css'),
+            env('ASSET_URL', 'http://127.0.0.1:5000') . '/modules/admin/plugins/toastr/toastr.min.css',
         ],
 
         'types' => [
