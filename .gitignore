@@ -16,3 +16,5 @@ yarn-error.log
 composer.lock
 /public/modules
 /public/media
+/modules/*
+!/modules
