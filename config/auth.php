@@ -1,7 +1,5 @@
 <?php
 
-use Modules\Admin\Supports\Constant;
-
 return [
 
     /*
@@ -10,9 +8,11 @@ return [
      * --------------------------------------------------------------------
      *
      * Authentication medium used to authentication
-     * @var string
+     *
+     * @reference \Modules\Admin\Supports\Constant::class
+     * @var string [email, username, mobile, otp]
      */
-    'credential_field' => Constant::LOGIN_EMAIL,
+    'credential_field' => 'email',
 
     /*
      * --------------------------------------------------------------------
@@ -20,11 +20,11 @@ return [
      * --------------------------------------------------------------------
      *
      * OTP Confirmation Medium
-     * @value \Modules\Admin\Supports\Constant::OTP_EMAIL
-     * @value \Modules\Admin\Supports\Constant::OTP_MOBILE
-     * @var string
+     *
+     * @reference \Modules\Admin\Supports\Constant::class
+     * @var string [email, mobile]
      */
-    'credential_otp_field' => Constant::OTP_MOBILE,
+    'credential_otp_field' => 'mobile',
 
     /*
     |--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ return [
     |
     */
 
-    'password_timeout' => 1 * Constant::WEEK,
+    'password_timeout' => 604800,
 
     /*
     |--------------------------------------------------------------------------
