@@ -75,7 +75,6 @@
             "@php artisan view:clear --ansi",
             "@php artisan config:clear --ansi",
             "@php artisan route:clear --ansi",
-            "@php artisan queue:clear --ansi",
             "@php artisan event:clear --ansi",
             "@php artisan cache:clear --ansi"
         ],
