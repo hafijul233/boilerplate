@@ -1,6 +1,5 @@
 <?php
 
-use Modules\Admin\Supports\Constant;
 use Nwidart\Modules\Activators\FileActivator;
 use Nwidart\Modules\Commands\CommandMakeCommand;
 use Nwidart\Modules\Commands\ControllerMakeCommand;
@@ -268,11 +267,13 @@ return [
     |
     | Here is the config for setting up caching feature.
     |
+    | @lifetime in seconds
+    |
     */
     'cache' => [
         'enabled' => false,
         'key' => 'laravel-modules',
-        'lifetime' => 1 * Constant::MINUTE,
+        'lifetime' => 60,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -301,13 +302,15 @@ return [
     | You can define new types of activators here, file, database etc. The only
     | required parameter is 'class'.
     | The file activator will store the activation status in storage/installed_modules
+    |
+    | @cache-lifetime in seconds
     */
     'activators' => [
         'file' => [
             'class' => FileActivator::class,
             'statuses-file' => base_path('modules_statuses.json'),
             'cache-key' => 'activator.installed',
-            'cache-lifetime' => 1 * Constant::WEEK,
+            'cache-lifetime' => 604800,
         ],
     ],
 
