@@ -2,12 +2,21 @@
     "name": "$STUDLY_NAME$",
     "alias": "$LOWER_NAME$",
     "description": "",
-    "keywords": [],
+    "keywords": [
+        "framework",
+        "laravel",
+        "boilerplate",
+        "$LOWER_NAME$"
+    ],
     "priority": 0,
     "providers": [
         "$MODULE_NAMESPACE$\\$STUDLY_NAME$\\$PROVIDER_NAMESPACE$\\$STUDLY_NAME$ServiceProvider"
     ],
     "aliases": {},
     "files": [],
-    "requires": []
+    "requires": [],
+    "minimumCoreVersion": "",
+    "title": "$STUDLY_NAME$",
+    "version":"0.0.1",
+    "author": "Hafijul Islam"
 }
