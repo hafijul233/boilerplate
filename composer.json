@@ -1,14 +1,29 @@
 {
     "name": "hafijul233/boilerplate",
     "type": "project",
-    "description": "A Boiler Plate Base package using The Laravel Framework.",
+    "description": "A Boiler Plate Based module package using The Laravel Framework.",
+    "support": {
+        "issues": "https://github.com/hafijul233/boilerplate/issues",
+        "wiki": "https://github.com/hafijul233/boilerplate/wiki",
+        "source": "https://github.com/hafijul233/boilerplate",
+        "docs": "http://hafijulislam.me/projects/boilerplate"
+    },
     "keywords": [
         "framework",
         "laravel",
         "boilerplate",
-        "module"
+        "module",
+        "adminlte3"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Hafijul Islam",
+            "email": "hafijul233@gmail.com",
+            "homepage": "http://www.hafijulislam.me",
+            "role": "Maintainer"
+        }
+    ],
     "require": {
         "php": "^7.3|^8.0",
         "ext-bcmath": "*",
