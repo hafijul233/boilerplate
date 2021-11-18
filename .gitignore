@@ -18,3 +18,4 @@ composer.lock
 /public/media
 /modules/*
 !/modules
+!/modules/.gitkeep
