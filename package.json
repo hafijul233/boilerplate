@@ -16,6 +16,6 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
-        "sass-svg-uri": "^1.0.0"
+
     }
 }
