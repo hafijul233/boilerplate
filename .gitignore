@@ -20,3 +20,4 @@ composer.lock
 !/modules
 !/modules/.gitkeep
 .gitmodules
+modules_statues.json
