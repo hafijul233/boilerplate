@@ -192,9 +192,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Collective\Html\HtmlServiceProvider::class,
-        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        Rap2hpoutre\FastExcel\Providers\FastExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
