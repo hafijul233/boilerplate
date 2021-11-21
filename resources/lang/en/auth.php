@@ -20,4 +20,5 @@ return [
         'success' => 'Registration successful. Welcome a aboard.',
         'failed' => 'Registration Failed. Please try again later.'
     ],
+    'success' => 'Credentials verified. Welcome !',
 ];
