@@ -1,6 +1,3 @@
 [submodule "modules/Admin"]
 	path = modules/Admin
 	url = https://github.com/hafijul233/admin-module.git
-[submodule "modules/Form"]
-	path = modules/Form
-	url = https://github.com/hafijul233/form-module.git

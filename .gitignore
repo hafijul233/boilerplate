@@ -19,3 +19,4 @@ composer.lock
 /modules/*
 !/modules
 !/modules/.gitkeep
+.gitmodules
