@@ -51,7 +51,7 @@ class ModuleDetectCommand extends Command
 
         //Create Module Status JSON
         try {
-            file_put_contents(base_path('modules_statuses.json'), json_encode($modules));
+            file_put_contents(base_path('modules_statuses.json'), json_encode($modules, JSON_PRETTY_PRINT));
 
             $this->info('Module Status Json Created.');
 
