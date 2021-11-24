@@ -41,6 +41,7 @@
         "ext-xmlreader": "*",
         "ext-zip": "*",
         "ext-zlib": "*",
+        "barryvdh/laravel-dompdf": "^0.9.0",
         "diglactic/laravel-breadcrumbs": "^7.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
