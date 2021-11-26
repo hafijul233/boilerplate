@@ -130,7 +130,7 @@
                                         <td class="date">{!! \Carbon\Carbon::parse($log['date'])->format('H:i:s') !!}</td>
                                         <td class="text">
                                             @if ($log['stack'])
-                                                <button type="button"
+                                                <button type="button" onclick="showContent(this);"
                                                         class="float-right look-btn expand btn btn-outline-dark btn-sm mb-2 ml-2"
                                                         data-display="stack{{{$key}}}">
                                                     <span class="fa fa-search"></span>
@@ -164,17 +164,14 @@
          aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header py-2">
                     <h5 class="modal-title" id="exampleModalLongTitle">Log Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body bg-black" id="error-modal-content"
-                     style="min-height: 70vh; overflow-y: scroll;">
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-body bg-black rounded-bottom" id="error-modal-content"
+                     style="min-height: 80vh; overflow-y: scroll;">
                 </div>
             </div>
         </div>
@@ -193,6 +190,19 @@
 @push('page-script')
     <script>
         var logTable = null;
+
+        function showContent(element) {
+            var container = $("<div style='color: limegreen;'></div>");
+            container.html($(element).parent().html());
+
+            container.find('.look-btn').each(function () {
+                $(this).remove();
+            });
+
+            $("#error-modal-content").empty().append(container);
+            $("#bd-example-modal-lg").modal();
+        }
+
         $(document).ready(function () {
             $('.table-container tr').on('click', function () {
                 $('#' + $(this).data('display')).toggle();
@@ -215,11 +225,6 @@
                     if (data) data.start = 0;
                     return data;
                 }
-            });
-
-            $(".look-btn").click(function () {
-                $("#error-modal-content").empty().html($(this).parent().html());
-                $("#bd-example-modal-lg").modal();
             });
         });
 
