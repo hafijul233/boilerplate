@@ -1,334 +1,248 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Laravel log viewer</title>
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-  <style>
-    body {
-      padding: 25px;
-    }
+@extends('admin::layouts.master')
 
-    h1 {
-      font-size: 1.5em;
-      margin-top: 0;
-    }
+@section('title', 'System Logs')
 
-    #table-log {
-        font-size: 0.85rem;
-    }
+@push('meta')
 
-    .sidebar {
-        font-size: 0.85rem;
-        line-height: 1;
-    }
+@endpush
 
-    .btn {
-        font-size: 0.7rem;
-    }
+@push('webfont')
 
-    .stack {
-      font-size: 0.85em;
-    }
+@endpush
 
-    .date {
-      min-width: 75px;
-    }
+@push('icon')
 
-    .text {
-      word-break: break-all;
-    }
+@endpush
 
-    a.llv-active {
-      z-index: 2;
-      background-color: #f5f5f5;
-      border-color: #777;
-    }
+@push('plugin-style')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('modules/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('modules/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+@endpush
 
-    .list-group-item {
-      word-break: break-word;
-    }
-
-    .folder {
-      padding-top: 15px;
-    }
-
-    .div-scroll {
-      height: 80vh;
-      overflow: hidden auto;
-    }
-    .nowrap {
-      white-space: nowrap;
-    }
-    .list-group {
-            padding: 5px;
+@push('inline-style')
+    <style>
+        .text {
+            word-break: break-all;
         }
+    </style>
+@endpush
 
+@push('head-script')
 
+@endpush
 
+@section('body-class', 'sidebar-mini')
 
-    /**
-    * DARK MODE CSS
-    */
+@section('breadcrumbs', \Breadcrumbs::render())
 
-    body[data-theme="dark"] {
-      background-color: #151515;
-      color: #cccccc;
-    }
+@section('actions')
+    {!! \Html::backButton('admin.') !!}
+@endsection
 
-    [data-theme="dark"] a {
-      color: #4da3ff;
-    }
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="card card-default">
+                    <h5 class="card-header text-center">Log Entries</h5>
+                    <div class="card-body p-0">
+                        <ul class="list-group p-0 list-group-flush">
+                            @foreach($files as $file)
+                                <a href="?l={{ \Illuminate\Support\Facades\Crypt::encrypt($file) }}"
+                                   class=" list-group-item list-group-item-action @if ($current_file == $file) active @endif">
+                                    {{ \Modules\Admin\Supports\Utility::formatLogFilename($file) }}
+                                </a>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class="card card-default">
+                    <h5 class="card-header text-center">Log Details</h5>
+                    <div class="card-body min-vh-100">
+                        <div class="pb-3 px-0 d-flex justify-content-center">
+                            @if($current_file)
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                                       title="Download"
+                                       href="?dl={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                                        <i class="fa fa-download"></i>
+                                        <span class="d-none d-sm-inline-flex">Download</span>
+                                    </a>
+                                    <a id="clean-log" class="btn btn-info" data-toggle="tooltip" data-placement="top"
+                                       title="Clean"
+                                       href="?clean={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                                        <i class="fa fa-eraser"></i>
+                                        <span class="d-none d-sm-inline-flex">Clean</span>
+                                    </a>
+                                    <a id="delete-log" class="btn btn-warning" data-toggle="tooltip"
+                                       data-placement="top" title="Delete"
+                                       href="?del={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                                        <i class="fa fa-trash"></i>
+                                        <span class="d-none d-sm-inline-flex">Delete</span>
+                                    </a>
+                                    @if(count($files) > 1)
+                                        <a id="delete-all-log" class="btn btn-danger" data-toggle="tooltip"
+                                           data-placement="top" title="Delete All"
+                                           href="?delall=true{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
+                                            <span class="fa fa-trash-alt"></span>
+                                            <span class="d-none d-sm-inline-flex"> Delete All</span>
 
-    [data-theme="dark"] a:hover {
-      color: #a8d2ff;
-    }
+                                        </a>
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
+                        @if ($logs === null)
+                            <div class="alert alert-danger">
+                                Log file >30M, please download it.
+                            </div>
+                        @else
+                            <table id="table-log" class="table table-bordered table-striped"
+                                   data-ordering-index="{{ $standardFormat ? 2 : 0 }}">
+                                <thead>
+                                <tr>
+                                    @if ($standardFormat)
+                                        <th>Level</th>
+                                        <th>Context</th>
+                                        <th>Date</th>
+                                    @else
+                                        <th>Line number</th>
+                                    @endif
+                                    <th>Content</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-    [data-theme="dark"] .list-group-item {
-      background-color: #1d1d1d;
-      border-color: #444;
-    }
+                                @foreach($logs as $key => $log)
+                                    <tr data-display="stack{{{$key}}}">
+                                        @if ($standardFormat)
+                                            <td class="nowrap text-{{{$log['level_class']}}}">
+                                    <span class="fa fa-{{{$log['level_img']}}}"
+                                          aria-hidden="true"></span>
+                                                {{ strtoupper($log['level']) }}
+                                            </td>
+                                            <td class="text">{{$log['context']}}</td>
+                                        @endif
+                                        <td class="date">{!! \Carbon\Carbon::parse($log['date'])->format('H:i:s') !!}</td>
+                                        <td class="text">
+                                            @if ($log['stack'])
+                                                <button type="button"
+                                                        class="float-right look-btn expand btn btn-outline-dark btn-sm mb-2 ml-2"
+                                                        data-display="stack{{{$key}}}">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                            @endif
+                                            {{{$log['text']}}}
+                                            @if (isset($log['in_file']))
+                                                <br/>{{{$log['in_file']}}}
+                                            @endif
+                                            @if ($log['stack'])
+                                                <div class="stack" id="stack{{{$key}}}"
+                                                     style="display: none; white-space: pre-wrap;">{{{ trim($log['stack']) }}}
+                                                </div>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
 
-    [data-theme="dark"] a.llv-active {
-        background-color: #0468d2;
-        border-color: rgba(255, 255, 255, 0.125);
-        color: #ffffff;
-    }
-
-    [data-theme="dark"] a.list-group-item:focus, [data-theme="dark"] a.list-group-item:hover {
-      background-color: #273a4e;
-      border-color: rgba(255, 255, 255, 0.125);
-      color: #ffffff;
-    }
-
-    [data-theme="dark"] .table td, [data-theme="dark"] .table th,[data-theme="dark"] .table thead th {
-      border-color:#616161;
-    }
-
-    [data-theme="dark"] .page-item.disabled .page-link {
-      color: #8a8a8a;
-      background-color: #151515;
-      border-color: #5a5a5a;
-    }
-
-    [data-theme="dark"] .page-link {
-      background-color: #151515;
-      border-color: #5a5a5a;
-    }
-
-    [data-theme="dark"] .page-item.active .page-link {
-      color: #fff;
-      background-color: #0568d2;
-      border-color: #007bff;
-    }
-
-    [data-theme="dark"] .page-link:hover {
-      color: #ffffff;
-      background-color: #0051a9;
-      border-color: #0568d2;
-    }
-
-    [data-theme="dark"] .form-control {
-      border: 1px solid #464646;
-      background-color: #151515;
-      color: #bfbfbf;
-    }
-
-    [data-theme="dark"] .form-control:focus {
-      color: #bfbfbf;
-      background-color: #212121;
-      border-color: #4a4a4a;
-  }
-
-  </style>
-
-  <script>
-    function initTheme() {
-      const darkThemeSelected =
-        localStorage.getItem('darkSwitch') !== null &&
-        localStorage.getItem('darkSwitch') === 'dark';
-      darkSwitch.checked = darkThemeSelected;
-      darkThemeSelected ? document.body.setAttribute('data-theme', 'dark') :
-        document.body.removeAttribute('data-theme');
-    }
-
-    function resetTheme() {
-      if (darkSwitch.checked) {
-        document.body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('darkSwitch', 'dark');
-      } else {
-        document.body.removeAttribute('data-theme');
-        localStorage.removeItem('darkSwitch');
-      }
-    }
-  </script>
-</head>
-<body>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col sidebar mb-3">
-      <h1><i class="fa fa-calendar" aria-hidden="true"></i> Laravel Log Viewer</h1>
-      <p class="text-muted"><i>by Rap2h</i></p>
-
-      <div class="custom-control custom-switch" style="padding-bottom:20px;">
-        <input type="checkbox" class="custom-control-input" id="darkSwitch">
-        <label class="custom-control-label" for="darkSwitch" style="margin-top: 6px;">Dark Mode</label>
-      </div>
-
-      <div class="list-group div-scroll">
-        @foreach($folders as $folder)
-          <div class="list-group-item">
-            <?php
-            \Rap2hpoutre\LaravelLogViewer\LaravelLogViewer::DirectoryTreeStructure( $storage_path, $structure );
-            ?>
-
-          </div>
-        @endforeach
-        @foreach($files as $file)
-          <a href="?l={{ \Illuminate\Support\Facades\Crypt::encrypt($file) }}"
-             class="list-group-item @if ($current_file == $file) llv-active @endif">
-            {{$file}}
-          </a>
-        @endforeach
-      </div>
-    </div>
-    <div class="col-10 table-container">
-      @if ($logs === null)
-        <div>
-          Log file >50M, please download it.
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
-      @else
-        <table id="table-log" class="table table-striped" data-ordering-index="{{ $standardFormat ? 2 : 0 }}">
-          <thead>
-          <tr>
-            @if ($standardFormat)
-              <th>Level</th>
-              <th>Context</th>
-              <th>Date</th>
-            @else
-              <th>Line number</th>
-            @endif
-            <th>Content</th>
-          </tr>
-          </thead>
-          <tbody>
-
-          @foreach($logs as $key => $log)
-            <tr data-display="stack{{{$key}}}">
-              @if ($standardFormat)
-                <td class="nowrap text-{{{$log['level_class']}}}">
-                  <span class="fa fa-{{{$log['level_img']}}}" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
-                </td>
-                <td class="text">{{$log['context']}}</td>
-              @endif
-              <td class="date">{{{$log['date']}}}</td>
-              <td class="text">
-                @if ($log['stack'])
-                  <button type="button"
-                          class="float-right expand btn btn-outline-dark btn-sm mb-2 ml-2"
-                          data-display="stack{{{$key}}}">
-                    <span class="fa fa-search"></span>
-                  </button>
-                @endif
-                {{{$log['text']}}}
-                @if (isset($log['in_file']))
-                  <br/>{{{$log['in_file']}}}
-                @endif
-                @if ($log['stack'])
-                  <div class="stack" id="stack{{{$key}}}"
-                       style="display: none; white-space: pre-wrap;">{{{ trim($log['stack']) }}}
-                  </div>
-                @endif
-              </td>
-            </tr>
-          @endforeach
-
-          </tbody>
-        </table>
-      @endif
-      <div class="p-3">
-        @if($current_file)
-          <a href="?dl={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-            <span class="fa fa-download"></span> Download file
-          </a>
-          -
-          <a id="clean-log" href="?clean={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-            <span class="fa fa-sync"></span> Clean file
-          </a>
-          -
-          <a id="delete-log" href="?del={{ \Illuminate\Support\Facades\Crypt::encrypt($current_file) }}{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-            <span class="fa fa-trash"></span> Delete file
-          </a>
-          @if(count($files) > 1)
-            -
-            <a id="delete-all-log" href="?delall=true{{ ($current_folder) ? '&f=' . \Illuminate\Support\Facades\Crypt::encrypt($current_folder) : '' }}">
-              <span class="fa fa-trash-alt"></span> Delete all files
-            </a>
-          @endif
-        @endif
-      </div>
     </div>
-  </div>
-</div>
-<!-- jQuery for Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-<!-- FontAwesome -->
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<!-- Datatables -->
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <!-- /.container-fluid -->
 
-<script>
+    <!-- Large modal -->
+    <div class="modal fade" id="bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Log Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-black" id="error-modal-content"
+                     style="min-height: 70vh; overflow-y: scroll;">
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 
-  // dark mode by https://github.com/coliff/dark-mode-switch
-  const darkSwitch = document.getElementById('darkSwitch');
 
-  // this is here so we can get the body dark mode before the page displays
-  // otherwise the page will be white for a second... 
-  initTheme();
+@push('plugin-script')
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('modules/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('modules/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('modules/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('modules/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+@endpush
 
-  window.addEventListener('load', () => {
-    if (darkSwitch) {
-      initTheme();
-      darkSwitch.addEventListener('change', () => {
-        resetTheme();
-      });
-    }
-  });
+@push('page-script')
+    <script>
+        var logTable = null;
+        $(document).ready(function () {
+            $('.table-container tr').on('click', function () {
+                $('#' + $(this).data('display')).toggle();
+            });
 
-  // end darkmode js
-        
-  $(document).ready(function () {
-    $('.table-container tr').on('click', function () {
-      $('#' + $(this).data('display')).toggle();
-    });
-    $('#table-log').DataTable({
-      "order": [$('#table-log').data('orderingIndex'), 'desc'],
-      "stateSave": true,
-      "stateSaveCallback": function (settings, data) {
-        window.localStorage.setItem("datatable", JSON.stringify(data));
-      },
-      "stateLoadCallback": function (settings) {
-        var data = JSON.parse(window.localStorage.getItem("datatable"));
-        if (data) data.start = 0;
-        return data;
-      }
-    });
-    $('#delete-log, #clean-log, #delete-all-log').click(function () {
-      return confirm('Are you sure?');
-    });
-  });
-</script>
-</body>
-</html>
+            $('#delete-log, #clean-log, #delete-all-log').click(function () {
+                return confirm('Are you sure?');
+            });
+
+            logTable = $('#table-log').DataTable({
+                "order": [$('#table-log').data('orderingIndex'), 'desc'],
+                "stateSave": true,
+                "responsive": true,
+                "info": true,
+                "stateSaveCallback": function (settings, data) {
+                    window.localStorage.setItem("datatable", JSON.stringify(data));
+                },
+                "stateLoadCallback": function (settings) {
+                    var data = JSON.parse(window.localStorage.getItem("datatable"));
+                    if (data) data.start = 0;
+                    return data;
+                }
+            });
+
+            $(".look-btn").click(function () {
+                $("#error-modal-content").empty().html($(this).parent().html());
+                $("#bd-example-modal-lg").modal();
+            });
+        });
+
+        $(window).resize(function () {
+            console.log(window.screen.width);
+            //destroy existing instance
+            logTable.destroy();
+            //re-init instance
+            logTable = $("#table-log").DataTable({
+                "order": [$('#table-log').data('orderingIndex'), 'desc'],
+                "stateSave": true,
+                "responsive": true,
+                "info": true,
+                "stateSaveCallback": function (settings, data) {
+                    window.localStorage.setItem("datatable", JSON.stringify(data));
+                },
+                "stateLoadCallback": function (settings) {
+                    var data = JSON.parse(window.localStorage.getItem("datatable"));
+                    if (data) data.start = 0;
+                    return data;
+                }
+            });
+        });
+
+    </script>
+@endpush
