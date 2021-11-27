@@ -1,5 +1,6 @@
 {
     "Admin": true,
     "Contact": true,
+    "Invoice": true,
     "Setting": true
 }
