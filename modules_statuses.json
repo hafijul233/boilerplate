@@ -1,7 +1,8 @@
 {
     "Admin": true,
-    "Contact": true,
-    "Invoice": true,
-    "Setting": true,
-    "Dashboard": true
+    "Auth": true,
+    "Core": true,
+    "Dashboard": true,
+    "Rbac": true,
+    "Theme": true
 }
