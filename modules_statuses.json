@@ -1,8 +1,3 @@
 {
-    "Admin": true,
-    "Auth": true,
-    "Core": true,
-    "Dashboard": true,
-    "Rbac": true,
-    "Theme": true
+    "Dashboard": true
 }
