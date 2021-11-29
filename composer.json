@@ -88,7 +88,8 @@
             "@php artisan config:clear --ansi",
             "@php artisan route:clear --ansi",
             "@php artisan event:clear --ansi",
-            "@php artisan cache:clear --ansi"
+            "@php artisan cache:clear --ansi",
+            "@php artisan module:generate-status"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi"
