@@ -4,6 +4,19 @@ return [
 
     /*
      * --------------------------------------------------------------------
+     * Prefix  on Admin Login Route
+     * --------------------------------------------------------------------
+     *
+     * Adding a Prefix to Admin Login Routes  Group
+     * If there are to section like frontend & backend
+     * then make route separate route group
+     *
+     * @var string
+     */
+    'admin_auth_prefix' => '/',
+
+    /*
+     * --------------------------------------------------------------------
      * Authentication Medium
      * --------------------------------------------------------------------
      *
@@ -176,19 +189,6 @@ return [
      * @var int
      */
     'minimum_password_length' => 6,
-
-    /*
-     * --------------------------------------------------------------------
-     * Prefix  on Admin Login Route
-     * --------------------------------------------------------------------
-     *
-     * Adding a Prefix to Admin Login Routes  Group
-     * If there are to section like frontend & backend
-     * then make route separate route group
-     *
-     * @var string
-     */
-    'admin_auth_prefix' => '/',
 
     /*
      * --------------------------------------------------------------------
