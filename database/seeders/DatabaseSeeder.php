@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Admin\Database\Seeders\AdminDatabaseSeeder;
+use Modules\Auth\Database\Seeders\AuthDatabaseSeeder;
+use Modules\Rbac\Database\Seeders\RbacDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       $this->call(AdminDatabaseSeeder::class);
+        $this->call(RbacDatabaseSeeder::class);
+        $this->call(AuthDatabaseSeeder::class);
+
     }
 }
