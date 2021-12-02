@@ -2,6 +2,5 @@
     "Admin": true,
     "Auth": true,
     "Core": true,
-    "Dashboard": true,
-    "Rbac": true
+    "Dashboard": true
 }

@@ -105,7 +105,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Modules\Core\Models\User::class
+            'model' => \Modules\Core\Models\Setting\User::class
         ],
 
         // 'users' => [
