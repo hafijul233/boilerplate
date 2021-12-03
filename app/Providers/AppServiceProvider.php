@@ -13,8 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(BladeServiceProvider::class);
-        $this->app->register(ModuleServiceProvider::class);
+
     }
 
     /**
