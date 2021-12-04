@@ -63,7 +63,7 @@ class $CLASS$ extends ServiceProvider
      *
      * @return void
      */
-    public function registerViews()
+    protected function registerViews()
     {
         $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
 
@@ -81,7 +81,7 @@ class $CLASS$ extends ServiceProvider
      *
      * @return void
      */
-    public function registerTranslations()
+    protected function registerTranslations()
     {
         $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
 
@@ -102,6 +102,11 @@ class $CLASS$ extends ServiceProvider
         return [];
     }
 
+    /**
+     * get module resource/views location
+     *
+     * @return array
+     */
     private function getPublishableViewPaths(): array
     {
         $paths = [];
@@ -113,9 +118,27 @@ class $CLASS$ extends ServiceProvider
         return $paths;
     }
 
-    public function registerPublicAssets()
+    /**
+     * Register Asset Publish Command asset
+     * will publish on public/module/** folder
+     *
+     * @return void
+     */
+    protected function registerPublicAssets()
     {
         $this->publishes([module_path($this->moduleName, 'Resources/dist/assets') => public_path('modules/' . $this->moduleNameLower . '/assets'),
         ], $this->moduleNameLower . '-module-assets');
+    }
+
+
+    /**
+     * Register all Commands used on this module
+     * So that laravel register them all
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        //$this->commands([]);
     }
 }
