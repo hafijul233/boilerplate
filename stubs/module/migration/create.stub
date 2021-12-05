@@ -13,10 +13,22 @@ class $CLASS$ extends Migration
      */
     public function up()
     {
+        //Temporary Disable Foreign Key Constraints
+        Schema::disableForeignKeyConstraints();
+
+        //Table Structure
         Schema::create('$TABLE$', function (Blueprint $table) {
             $table->id();
-$FIELDS$
-            $table->timestamps();
+            $FIELDS$
+
+            $table->enum('enabled', array_keys(Constant::ENABLED_OPTIONS))
+                            ->default(Constant::ENABLED_OPTION)->nullable();
+            $table->foreignId('created_by')->index()->nullable();
+            $table->foreignId('updated_by')->index()->nullable();
+            $table->foreignId('deleted_by')->index()->nullable();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
@@ -27,6 +39,13 @@ $FIELDS$
      */
     public function down()
     {
+        //Temporary Disable Foreign Key Constraints
+        Schema::disableForeignKeyConstraints();
+
+        //Remove Table Structure
         Schema::dropIfExists('$TABLE$');
+
+        //Temporary Disable Foreign Key Constraints
+        Schema::enableForeignKeyConstraints();
     }
 }
