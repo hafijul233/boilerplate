@@ -4,5 +4,6 @@
     "Contact": true,
     "Core": true,
     "Dashboard": true,
-    "Organization": true
+    "Organization": true,
+    "Money": true
 }
