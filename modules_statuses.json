@@ -1,5 +1,8 @@
 {
     "Admin": true,
+    "Auth": true,
     "Contact": true,
-    "Setting": true
+    "Core": true,
+    "Dashboard": true,
+    "Organization": true
 }

@@ -4,6 +4,19 @@ return [
 
     /*
      * --------------------------------------------------------------------
+     * Prefix  on Admin Login Route
+     * --------------------------------------------------------------------
+     *
+     * Adding a Prefix to Admin Login Routes  Group
+     * If there are to section like frontend & backend
+     * then make route separate route group
+     *
+     * @var string
+     */
+    'admin_auth_prefix' => '/',
+
+    /*
+     * --------------------------------------------------------------------
      * Authentication Medium
      * --------------------------------------------------------------------
      *
@@ -92,7 +105,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Modules\Admin\Models\User::class,
+            'model' => \Modules\Core\Models\Setting\User::class
         ],
 
         // 'users' => [
@@ -176,19 +189,6 @@ return [
      * @var int
      */
     'minimum_password_length' => 6,
-
-    /*
-     * --------------------------------------------------------------------
-     * Prefix  on Admin Login Route
-     * --------------------------------------------------------------------
-     *
-     * Adding a Prefix to Admin Login Routes  Group
-     * If there are to section like frontend & backend
-     * then make route separate route group
-     *
-     * @var string
-     */
-    'admin_auth_prefix' => '/',
 
     /*
      * --------------------------------------------------------------------

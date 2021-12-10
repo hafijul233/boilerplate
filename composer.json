@@ -33,11 +33,11 @@
         "ext-tokenizer": "*",
         "ext-xmlreader": "*",
         "ext-zip": "*",
+        "ext-json": "*",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "diglactic/laravel-breadcrumbs": "^7.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "hafijul233/admin-module": "^0.0.6",
         "hafijul233/form": "^0.0.6",
         "intervention/image": "^2.7",
         "joshbrw/laravel-module-installer": "^2.0",
@@ -89,7 +89,8 @@
             "@php artisan config:clear --ansi",
             "@php artisan route:clear --ansi",
             "@php artisan event:clear --ansi",
-            "@php artisan cache:clear --ansi"
+            "@php artisan cache:clear --ansi",
+            "@php artisan module:generate-status"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi"

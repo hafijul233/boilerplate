@@ -20,5 +20,10 @@ return [
         'success' => 'Registration successful. Welcome a aboard.',
         'failed' => 'Registration Failed. Please try again later.'
     ],
-    'success' => 'Credentials verified. Welcome !',
+    'login' => [
+        'failed' => 'These credentials do not match our records.',
+        'success' => 'Credentials verified. Welcome !',
+        'banned' => 'User account is disabled. Contact system administrator.',
+        'forced' => 'Your password has been changed. Please reset password.'
+    ]
 ];

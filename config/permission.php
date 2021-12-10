@@ -1,8 +1,5 @@
 <?php
 
-use Modules\Admin\Models\Rbac\Permission;
-use Modules\Admin\Models\Rbac\Role;
-
 return [
 
     'models' => [
@@ -16,7 +13,7 @@ return [
          * `Spatie\Permission\Contracts\Permission` contract.
          */
 
-        'permission' => Permission::class,
+        'permission' => \Modules\Core\Models\Setting\Permission::class,
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which
@@ -27,7 +24,7 @@ return [
          * `Spatie\Permission\Contracts\Role` contract.
          */
 
-        'role' => Role::class,
+        'role' => \Modules\Core\Models\Setting\Role::class,
 
     ],
 
