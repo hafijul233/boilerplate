@@ -6,6 +6,11 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+
+/**
+ * @class $CLASS$
+ * @package $NAMESPACE$
+ */
 class $CLASS$ extends Controller
 {
     /**

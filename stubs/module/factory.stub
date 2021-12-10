@@ -3,6 +3,10 @@ namespace $NAMESPACE$;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @class $CLASS$
+ * @package $NAMESPACE$
+ */
 class $NAME$Factory extends Factory
 {
     /**

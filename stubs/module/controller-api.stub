@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+/**
+ * @class $CLASS$
+ * @package $NAMESPACE$
+ */
 class $CLASS$ extends Controller
 {
     /**

@@ -5,6 +5,10 @@ namespace $NAMESPACE$;
 use Closure;
 use Illuminate\Http\Request;
 
+/**
+ * @class $CLASS$
+ * @package $NAMESPACE$
+ */
 class $CLASS$
 {
     /**

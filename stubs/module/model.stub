@@ -11,6 +11,10 @@ use Modules\Core\Models\Setting\User;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable;
 
+/**
+ * @class $CLASS$
+ * @package $NAMESPACE$
+ */
 class $CLASS$ extends Model implements Auditable
 {
     use AuditableTrait, HasFactory, SoftDeletes, Sortable;

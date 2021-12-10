@@ -4,6 +4,10 @@ namespace $NAMESPACE$;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * @class $CLASS$
+ * @package $NAMESPACE$
+ */
 class $CLASS$ extends ServiceProvider
 {
     /**
