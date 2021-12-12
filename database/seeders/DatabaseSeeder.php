@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Auth\Database\Seeders\AuthDatabaseSeeder;
+use Modules\Contact\Database\Seeders\ContactDatabaseSeeder;
 use Modules\Core\Database\Seeders\CoreDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CoreDatabaseSeeder::class);
         $this->call(AuthDatabaseSeeder::class);
-
+        $this->call(ContactDatabaseSeeder::class);
     }
 }
