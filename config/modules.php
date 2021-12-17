@@ -161,6 +161,7 @@ return [
             'test-feature' => ['path' => 'Tests/Feature', 'generate' => true],
             'repository' => ['path' => 'Repositories/Eloquent', 'generate' => true],
             'service' => ['path' => 'Services', 'generate' => true],
+            'export' => ['path' => 'Exports', 'generate' => true],
             'event' => ['path' => 'Events', 'generate' => true],
             'listener' => ['path' => 'Listeners', 'generate' => true],
             'policies' => ['path' => 'Policies', 'generate' => false],
