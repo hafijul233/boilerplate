@@ -63,10 +63,12 @@ class $CLASS$ extends Model implements Auditable
 
     /************************ Static Factory ************************/
 
+    /*
     protected static function newFactory()
     {
         return \$MODULE_NAMESPACE$\$MODULE$\Database\Factories\$NAME$Factory::new();
     }
+    */
 
     /************************ Audit Relations ************************/
 

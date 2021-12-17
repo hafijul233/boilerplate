@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Modules\Core\Abstracts\Service\Service;
 use Modules\Core\Supports\Constant;
 use Throwable;
@@ -80,21 +81,21 @@ class $CLASS$ extends Service
      */
     public function store$MODEL$(array $inputs): array
     {
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try {
             $new$MODEL$ = $this->$MODEL_VARIABLE$Repository->create($inputs);
             if ($new$MODEL$ instanceof $MODEL$) {
-                \DB::commit();
+                DB::commit();
                 return ['status' => true, 'message' => __('New $MODEL$ Created'),
                     'level' => Constant::MSG_TOASTR_SUCCESS, 'title' => 'Notification!'];
             } else {
-                \DB::rollBack();
+                DB::rollBack();
                 return ['status' => false, 'message' => __('New $MODEL$ Creation Failed'),
                     'level' => Constant::MSG_TOASTR_ERROR, 'title' => 'Alert!'];
             }
         } catch (Exception $exception) {
             $this->$MODEL_VARIABLE$Repository->handleException($exception);
-            \DB::rollBack();
+            DB::rollBack();
             return ['status' => false, 'message' => $exception->getMessage(),
                 'level' => Constant::MSG_TOASTR_WARNING, 'title' => 'Error!'];
         }
@@ -110,16 +111,16 @@ class $CLASS$ extends Service
      */
     public function update$MODEL$(array $inputs, $id): array
     {
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try {
             $$MODEL_VARIABLE$ = $this->$MODEL_VARIABLE$Repository->show($id);
             if ($$MODEL_VARIABLE$ instanceof $MODEL$) {
                 if ($this->$MODEL_VARIABLE$Repository->update($inputs, $id)) {
-                    \DB::commit();
+                    DB::commit();
                     return ['status' => true, 'message' => __('$MODEL$ Info Updated'),
                         'level' => Constant::MSG_TOASTR_SUCCESS, 'title' => 'Notification!'];
                 } else {
-                    \DB::rollBack();
+                    DB::rollBack();
                     return ['status' => false, 'message' => __('$MODEL$ Info Update Failed'),
                         'level' => Constant::MSG_TOASTR_ERROR, 'title' => 'Alert!'];
                 }
@@ -129,7 +130,7 @@ class $CLASS$ extends Service
             }
         } catch (Exception $exception) {
             $this->$MODEL_VARIABLE$Repository->handleException($exception);
-            \DB::rollBack();
+            DB::rollBack();
             return ['status' => false, 'message' => $exception->getMessage(),
                 'level' => Constant::MSG_TOASTR_WARNING, 'title' => 'Error!'];
         }
@@ -144,21 +145,21 @@ class $CLASS$ extends Service
      */
     public function destroy$MODEL$($id): array
     {
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try {
             if ($this->$MODEL_VARIABLE$Repository->delete($id)) {
-                \DB::commit();
+                DB::commit();
                 return ['status' => true, 'message' => __('$MODEL$ is Trashed'),
                     'level' => Constant::MSG_TOASTR_SUCCESS, 'title' => 'Notification!'];
 
             } else {
-                \DB::rollBack();
+                DB::rollBack();
                 return ['status' => false, 'message' => __('$MODEL$ is Delete Failed'),
                     'level' => Constant::MSG_TOASTR_ERROR, 'title' => 'Alert!'];
             }
         } catch (Exception $exception) {
             $this->$MODEL_VARIABLE$Repository->handleException($exception);
-            \DB::rollBack();
+            DB::rollBack();
             return ['status' => false, 'message' => $exception->getMessage(),
                 'level' => Constant::MSG_TOASTR_WARNING, 'title' => 'Error!'];
         }
@@ -173,21 +174,21 @@ class $CLASS$ extends Service
      */
     public function restore$MODEL$($id): array
     {
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try {
             if ($this->$MODEL_VARIABLE$Repository->restore($id)) {
-                \DB::commit();
+                DB::commit();
                 return ['status' => true, 'message' => __('$MODEL$ is Restored'),
                     'level' => Constant::MSG_TOASTR_SUCCESS, 'title' => 'Notification!'];
 
             } else {
-                \DB::rollBack();
+                DB::rollBack();
                 return ['status' => false, 'message' => __('$MODEL$ is Restoration Failed'),
                     'level' => Constant::MSG_TOASTR_ERROR, 'title' => 'Alert!'];
             }
         } catch (Exception $exception) {
             $this->$MODEL_VARIABLE$Repository->handleException($exception);
-            \DB::rollBack();
+            DB::rollBack();
             return ['status' => false, 'message' => $exception->getMessage(),
                 'level' => Constant::MSG_TOASTR_WARNING, 'title' => 'Error!'];
         }

@@ -22,3 +22,4 @@ composer.lock
 .gitmodules
 route.txt
 modules_statuses.json
+/modules/Contact/Database/Seeders/Setting/mysql.php

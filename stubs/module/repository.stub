@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Auth\Services\AuthenticatedSessionService;
 use Modules\Core\Abstracts\Repository\EloquentRepository;
+$MODEL_NAMESPACE$
 
 /**
  * @class $CLASS$
@@ -86,7 +87,7 @@ class $CLASS$ extends EloquentRepository
      * @return Builder[]|Collection
      * @throws Exception
      */
-    public function getAllPermissionWith(array $filters = [], array $eagerRelations = [], bool $is_sortable = false)
+    public function getWith(array $filters = [], array $eagerRelations = [], bool $is_sortable = false)
     {
         try {
             $query = $this->filterData($filters, $is_sortable);
