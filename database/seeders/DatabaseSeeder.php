@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-/*        $this->call(CoreDatabaseSeeder::class);
+        $this->call(CoreDatabaseSeeder::class);
         $this->call(AuthDatabaseSeeder::class);
-        $this->call(ContactDatabaseSeeder::class);*/
-        $this->call(CitySeeder::class);
+        $this->call(ContactDatabaseSeeder::class);
+        //$this->call(CitySeeder::class);
     }
 }
